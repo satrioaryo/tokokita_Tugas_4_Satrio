@@ -17,15 +17,6 @@ class _ProdukDetailState extends State<ProdukDetail> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail Produk'),
-        actions: [
-          Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: Center(
-                  child: Text(
-                'Satrio',
-                style: TextStyle(fontSize: 20),
-              ))),
-        ],
       ),
       body: Center(
         child: Column(
@@ -42,7 +33,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
               "Harga : Rp. ${widget.produk!.hargaProduk.toString()}",
               style: const TextStyle(fontSize: 18.0),
             ),
-            _tombolHapusEdit()
+            _tombolHapusEdit(),
           ],
         ),
       ),
@@ -53,20 +44,23 @@ class _ProdukDetailState extends State<ProdukDetail> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        //Tombol Edit
         OutlinedButton(
-            child: const Text("EDIT"),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ProdukForm(
-                            produk: widget.produk!,
-                          )));
-            }),
-        //Tombol Hapus
+          child: const Text("EDIT"),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProdukForm(
+                  produk: widget.produk!,
+                ),
+              ),
+            );
+          },
+        ),
         OutlinedButton(
-            child: const Text("DELETE"), onPressed: () => confirmHapus()),
+          child: const Text("DELETE"),
+          onPressed: () => confirmHapus(),
+        ),
       ],
     );
   }
@@ -75,16 +69,23 @@ class _ProdukDetailState extends State<ProdukDetail> {
     AlertDialog alertDialog = AlertDialog(
       content: const Text("Yakin ingin menghapus data ini?"),
       actions: [
-        //tombol hapus
         OutlinedButton(
           child: const Text("Ya"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProdukForm(
+                  produk: widget.produk!,
+                ),
+              ),
+            );
+          },
         ),
-        //tombol batal
         OutlinedButton(
           child: const Text("Batal"),
           onPressed: () => Navigator.pop(context),
-        )
+        ),
       ],
     );
 
